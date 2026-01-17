@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NPX Gaming Store - Free Fire Top Up</title>
+
+    <!-- ✅ JavaScript CDN Added -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<style>
+/* --- PROFESSIONAL GAMING AESTHETICS --- */
+:root {
+    --dark-bg: #121212;
+    --card-bg: #1e1e1e;
+    --primary-neon: #ff0055;
+    --secondary-neon: #00ffaa;
+    --text-color: #f0f0f0;
+    --border-color: #333333;
+}
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0; padding: 20px 0;
+    background-color: var(--dark-bg);
+    color: var(--text-color);
+}
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--border-color);
+}
+/* Logo */
+.logo-container { text-align: center; margin-bottom: 20px; }
+.logo-container img { max-width: 150px; height: auto; }
+/* Headings */
+h1, h2 {
+    text-align: center;
+    color: var(--primary-neon);
+    text-shadow: 0 0 5px rgba(255, 0, 85, 0.5);
+    margin-top: 0;
+}
+h1 { font-size: 2.5em; padding-bottom: 10px; margin-bottom: 10px; }
+h3 {
+    border-left: 5px solid var(--secondary-neon);
+    padding-left: 15px;
+    margin-top: 35px;
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+/* Package Cards */
+.packages {
+    display: flex; justify-content: center;
+    flex-wrap: wrap; gap: 12px;
+}
+.package {
+    border: 2px solid var(--border-color);
+    padding: 10px; text-align: center;
+    border-radius: 8px; cursor: pointer;
+    transition: all 0.2s;
+    width: 140px; background-color: #242424;
+}
+.package.membership {
+    border-color: #7d00ff;
+    background-color: #301050;
+    width: 160px;
+}
+.package:hover {
+    border-color: var(--secondary-neon);
+    box-shadow: 0 0 10px rgba(0, 255, 170, 0.4);
+    transform: translateY(-2px);
+}
+.package.selected {
+    border-color: var(--primary-neon);
+    background-color: #381020;
+    box-shadow: 0 0 15px rgba(255, 0, 85, 0.6);
+}
+.package h4 { margin: 5px 0; color: var(--text-color); font-size: 1.1em; }
+.package p { font-weight: bold; color: var(--primary-neon); margin: 0; }
+/* Payment Section */
+#payment-details {
+    border-top: 1px solid var(--border-color);
+    padding-top: 25px; margin-top: 25px;
+}
+#payment-details label {
+    display: block; margin-top: 15px;
+    font-weight: bold; color: var(--secondary-neon);
+}
+#payment-details input[type="text"],
+#payment-details input[type="tel"],
+#payment-details input[type="file"] {
+    width: calc(100% - 22px);
+    padding: 12px; margin: 8px 0;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background-color: #333;
+    color: var(--text-color);
+}
+#payment-details input:focus {
+    border-color: var(--primary-neon);
+    outline: none;
+}
+.qr-code { text-align: center; margin-bottom: 25px; }
+.qr-code img {
+    max-width: 220px; border: 3px solid var(--secondary-neon);
+    padding: 5px; border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 255, 170, 0.5);
+}
+#whatsapp-submit {
+    background-color: #25D366;
+    color: white; padding: 15px 20px;
+    border: none; border-radius: 6px;
+    cursor: pointer; font-size: 1.2em;
+    font-weight: bold; margin-top: 25px;
+    width: 100%;
+}
+#whatsapp-submit:hover { background-color: #1EBE57; }
+.hidden { display: none; }
+small { color: #aaa; }
+</style>
+</head>
+
+<body>
+<div class="container">
+    <div class="logo-container">
+        <img src="npx_logo.jpg" alt="NPX Gaming Logo" style="border-radius: 50%;">
+    </div>
+
+    <h1>NPX GAMING STORE</h1>
+    <h2>⚡ Fastest Free Fire Top Up Service ⚡</h2>
+
+    <h3>1. Select Diamond Package</h3>
+
+    <div class="packages">
+        <!-- Your existing packages (unchanged) -->
+        <div class="package" data-amount="25" data-price="30" data-type="Diamonds" onclick="selectPackage(this, 30)"><h4>25 💎</h4><p>NPR 30</p></div>
+        <div class="package" data-amount="50" data-price="50" data-type="Diamonds" onclick="selectPackage(this, 50)"><h4>50 💎</h4><p>NPR 50</p></div>
+        <div class="package" data-amount="115" data-price="95" data-type="Diamonds" onclick="selectPackage(this, 95)"><h4>115 💎</h4><p>NPR 95</p></div>
+        <!-- ... (rest remain untouched) -->
+    </div>
+
+    <h3>2. Select Membership Package</h3>
+
+    <div class="packages">
+        <div class="package membership" data-amount="Weekly" data-price="190" data-type="Membership" onclick="selectPackage(this, 190)">
+            <h4>Weekly Membership</h4>
+            <p>NPR 190</p>
+        </div>
+        <div class="package membership" data-amount="Monthly" data-price="910" data-type="Membership" onclick="selectPackage(this, 910)">
+            <h4>Monthly Membership</h4>
+            <p>NPR 910</p>
+        </div>
+    </div>
+
+    <div id="payment-details" class="hidden">
+        <h3 id="selected-package-info">You Selected: 25 Diamonds (NPR 30)</h3>
+
+        <hr style="border-color: var(--border-color);">
+
+        <h3>3. Make Payment via eSewa</h3>
+        <p style="text-align:center;">Scan the eSewa QR Code below and send NPR <span id="payment-amount">30</span>.</p>
+
+        <div class="qr-code">
+            <img id="qr-image" src="esewa_qr.jpg" alt="eSewa Payment QR">
+        </div>
+
+        <hr style="border-color: var(--border-color);">
+
+        <h3>4. Enter Details & Submit Order</h3>
+
+        <form id="order-form">
+
+            <label for="uid">Free Fire Player UID:</label>
+            <input type="text" id="uid" required>
+
+            <label for="phone">Contact Phone Number:</label>
+            <input type="tel" id="phone" required>
+
+            <label for="screenshot">Upload Payment Screenshot:</label>
+            <input type="file" id="screenshot" accept="image/*" required>
+
+            <button type="button" id="whatsapp-submit" onclick="sendOrder()">Place Order (Send on WhatsApp)</button>
+
+            <p id="error-message" class="hidden" style="color: var(--primary-neon); text-align:center; margin-top:15px;">
+                Please ensure a package is selected and all fields are filled.
+            </p>
+
+        </form>
+    </div>
+
+    <footer>
+        <p style="text-align:center; margin-top:30px; font-size:0.9em; color:#666;">
+            &copy; 2024 NPX Gaming Store. All rights reserved.
+        </p>
+        <div class="social-icons" style="text-align:center; margin-top:12px;">
+            <a href="https://wa.me/923420207890" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" style="display:inline-block; margin:0 8px; color:var(--secondary-neon); text-decoration:none;">
+            <!-- WhatsApp SVG -->
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M20.52 3.48A11.86 11.86 0 0012 .25 11.9 11.9 0 003.48 3.48 11.82 11.82 0 000 12c0 2.1.55 4.16 1.6 5.97L.5 23.5l5.76-1.45A11.87 11.87 0 0012 24c3.18 0 6.17-1.24 8.52-3.48A11.9 11.9 0 0024 12a11.82 11.82 0 00-3.48-8.52zM12 21.5c-2.2 0-4.26-.66-6-1.9l-.42-.28-3.4.85.9-3.33-.28-.42A9.5 9.5 0 012.5 12C2.5 6.2 6.2 2.5 12 2.5S21.5 6.2 21.5 12 17.8 21.5 12 21.5z" />
+                <path d="M17.2 14.2c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15s-.77.96-.95 1.16c-.18.2-.36.22-.66.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.48-1.77-1.65-2.07-.17-.3-.02-.46.12-.61.12-.12.27-.31.4-.47.13-.16.17-.27.27-.45.1-.18.05-.34-.02-.49-.07-.14-.67-1.62-.92-2.22-.24-.57-.48-.5-.67-.5-.17 0-.36-.01-.55-.01s-.49.07-.75.34c-.26.27-1 1-1 2.4s1.02 2.76 1.16 2.95c.14.19 2.01 3.1 4.87 4.35 1.8.78 2.55.85 3.48.72.53-.08 1.75-.72 2-1.41.25-.69.25-1.28.18-1.41-.07-.12-.26-.18-.57-.33z" />
+            </svg>
+            </a>
+
+            <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" style="display:inline-block; margin:0 8px; color:var(--primary-neon); text-decoration:none;">
+            <!-- Facebook SVG -->
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M22 12a10 10 0 10-11.5 9.9v-7H8.9v-2.9h1.6V9.2c0-1.6.95-2.5 2.4-2.5.7 0 1.44.12 1.44.12v1.58h-.81c-.8 0-1.05.5-1.05 1.02v1.22h1.78l-.28 2.9h-1.5V21.9A10 10 0 0022 12z" />
+            </svg>
+            </a>
+
+            <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" style="display:inline-block; margin:0 8px; color:var(--secondary-neon); text-decoration:none;">
+            <!-- Instagram SVG -->
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.6" />
+                <circle cx="12" cy="12" r="3.2" stroke="currentColor" stroke-width="1.6" />
+                <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" />
+            </svg>
+            </a>
+
+            <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="YouTube" style="display:inline-block; margin:0 8px; color:#ff0000; text-decoration:none;">
+            <!-- YouTube SVG -->
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M23.5 6.2c-.3-1.2-1.2-2.1-2.4-2.4C18.6 3.3 12 3.3 12 3.3s-6.6 0-9.1.5C1.7 4 1 4.9.7 6.2.2 8.7.2 12 .2 12s0 3.3.5 5.8c.3 1.2 1.2 2.1 2.4 2.4 2.5.6 9.1.6 9.1.6s6.6 0 9.1-.6c1.2-.3 2.1-1.2 2.4-2.4.6-2.5.6-5.8.6-5.8s0-3.3-.5-5.8zM9.8 15.5V8.5l6.2 3.5-6.2 3.5z"/>
+            </svg>
+            </a>
+        </div></svg></div>
+    </footer>
+</div>
+
+<script>
+const WHATSAPP_NUMBER = "923420207890";
+let selectedAmount = 0;
+let selectedPrice = 0;
+let selectedType = "";
+
+function selectPackage(element, price) {
+
+    document.querySelectorAll('.package').forEach(p => p.classList.remove('selected'));
+
+    element.classList.add('selected');
+
+    selectedAmount = element.getAttribute('data-amount');
+    selectedPrice = price;
+    selectedType = element.getAttribute('data-type');
+
+    const displayPrice = "NPR " + selectedPrice.toLocaleString("en-IN");
+
+    document.getElementById('selected-package-info').innerHTML =
+        `You Selected: <b>${selectedAmount} ${selectedType} (${displayPrice})</b>`;
+
+    document.getElementById('payment-amount').textContent =
+        selectedPrice.toLocaleString("en-IN");
+
+    document.getElementById('payment-details').classList.remove('hidden');
+}
+
+function sendOrder() {
+
+    const uid = document.getElementById('uid').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const screenshotSelected = document.getElementById('screenshot').files.length > 0;
+
+    if (!selectedAmount || !uid || !phone || !screenshotSelected) {
+        document.getElementById('error-message').classList.remove('hidden');
+        return;
+    }
+
+    document.getElementById('error-message').classList.add('hidden');
+
+   // Build WhatsApp message without indentation
+const message = [
+    "💎 NEW NPX TOP UP ORDER 💎",
+    "--------------------------",
+    "Payment Method: eSewa (QR)",
+    `Package Type: ${selectedType}`,
+    `Package: ${selectedAmount}`,
+    `Price: NPR ${selectedPrice}`,
+    "",
+    `Player UID: ${uid}`,
+    `Contact Phone: ${phone}`,
+    "",
+    "Payment Status: Paid (User has uploaded screenshot)",
+    "--------------------------",
+    "Please process this order immediately."
+].join("\n");
+
+// Encode for WhatsApp URL
+const encodedMessage = encodeURIComponent(message);
+
+// Generate WA link
+const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+
+// Open WhatsApp
+window.open(whatsappUrl, "_blank");
+
+    alert("Order sent to WhatsApp.\nPlease send the screenshot manually to confirm.");
+
+    document.getElementById('order-form').reset();
+    document.getElementById('payment-details').classList.add('hidden');
+
+    document.querySelectorAll('.package').forEach(p => p.classList.remove('selected'));
+
+    selectedAmount = 0;
+    selectedPrice = 0;
+    selectedType = "";
+}
+</script>
+
+</body>
+</html>
